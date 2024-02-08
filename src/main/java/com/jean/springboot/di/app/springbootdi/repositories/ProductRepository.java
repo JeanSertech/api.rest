@@ -2,9 +2,12 @@ package com.jean.springboot.di.app.springbootdi.repositories;
 import java.util.Arrays;
 import java.util.List;
 
+import org.springframework.stereotype.Component;
+
 import com.jean.springboot.di.app.springbootdi.models.Product;
 
-public class ProductRepository {
+@Component
+public class ProductRepository implements IProductRepository{
 
     private List<Product> products;
 
@@ -17,10 +20,12 @@ public class ProductRepository {
         );
     }
 
+    @Override
     public List<Product> getProducts(){
         return products;
     }
 
+    @Override
     public Product getProductByid(Long id ){
         return products.stream().filter(p -> p.getId().equals(id)).findFirst().orElse(null);
     }
